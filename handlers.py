@@ -35,7 +35,7 @@ def register_handlers(bot, db, storage):
             now = datetime.now()
 
             for i, t in enumerate(data, 1):
-                print("DB ROW:", t)  # 👈 ВСТАВЬ СЮДА
+                print("DB ROW:", t)  
                 print("PHOTO_ID:", t[10])
                 photo_id = t[10]
 
@@ -72,7 +72,7 @@ def register_handlers(bot, db, storage):
             count = 0
 
             for t in tasks:
-                task_datetime = t[3]  # ✅ уже datetime
+                task_datetime = t[3]  
 
                 if task_datetime.date() == today_date:
                     text += f"{get_color(t[3])} {t[2]} — {t[3]}\n"
@@ -87,7 +87,7 @@ def register_handlers(bot, db, storage):
             bot.send_message(message.chat.id, text)
 
         except Exception as e:
-            print(e)  # 👈 лучше в консоль
+            print(e)  
 
     # CALENDAR
     @bot.message_handler(func=lambda m: m.text == "📅 Calendar")
@@ -189,7 +189,7 @@ def register_handlers(bot, db, storage):
 
                     user_data[user_id]["title"] = text
 
-                    # СРАЗУ показываем кнопки, без лишнего текста
+                   
                     markup = types.InlineKeyboardMarkup()
                     markup.add(
                         types.InlineKeyboardButton("📸 Send Photo", callback_data="send_photo"),
@@ -207,7 +207,7 @@ def register_handlers(bot, db, storage):
                         bot.send_message(message.chat.id, "📅 Enter Year:")
                         return
 
-                    # если фото не отправлено — просто снова кнопки
+                  
                     markup = types.InlineKeyboardMarkup()
                     markup.add(
                         types.InlineKeyboardButton("📸 Send Photo", callback_data="send_photo"),
@@ -246,7 +246,7 @@ def register_handlers(bot, db, storage):
                         bot.send_message(message.chat.id, "❗ Invalid day")
                     return
 
-                # 6. TIME (FINAL STEP)
+                # 6. TIME 
                 if "time" not in user_data[user_id]:
                     try:
                         datetime.strptime(text, "%H:%M")
